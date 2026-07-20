@@ -2,7 +2,7 @@
 
 Projet portfolio d'analyse de donnees sur la performance energetique des batiments.
 
-L'objectif est de nettoyer des donnees publiques, construire des indicateurs simples et preparer un fichier exploitable dans Power BI ou Tableau.
+L'objectif est de nettoyer des donnees publiques, construire des indicateurs simples et preparer un fichier exploitable dans Tableau Public.
 
 ## Presentation du projet
 
@@ -67,7 +67,7 @@ energy-performance-dashboard/
 |   |-- 01_data_exploration.ipynb
 |   |-- 02_data_cleaning.ipynb
 |   |-- 03_data_analysis.ipynb
-|   |-- 04_export_powerbi.ipynb
+|   |-- 04_export_tableau.ipynb
 |-- sql/
 |   |-- create_tables.sql
 |   |-- analysis_queries.sql
@@ -105,10 +105,10 @@ pip install -r requirements.txt
 01_data_exploration.ipynb
 02_data_cleaning.ipynb
 03_data_analysis.ipynb
-04_export_powerbi.ipynb
+04_export_tableau.ipynb
 ```
 
-3. Utiliser le fichier final dans Power BI ou Tableau :
+3. Utiliser le fichier final dans Tableau Public :
 
 ```text
 dashboard/building_energy_performance_dashboard.csv
