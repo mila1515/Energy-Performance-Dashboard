@@ -48,6 +48,16 @@ Le tableau de bord est disponible sur Tableau Public :
 
 [Ouvrir le tableau de bord interactif](https://public.tableau.com/views/Seattle_Building_Energy_Performance_Dashboard/BuildingEnergyPerformanceDashboard?:language=fr-FR&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
+## Application de suivi : Energy Watch
+
+En complement du tableau de bord, **Energy Watch** est une application web de suivi continu, construite avec Streamlit et deployee avec Docker :
+
+[Ouvrir Energy Watch](https://energy-watch.onrender.com/)
+
+Elle detecte les batiments qui derivent (hausse de l'intensite energetique, score ENERGY STAR en baisse, non-conformite, ecart aux batiments du meme type), compare chaque annee a la precedente a perimetre constant, et propose une fiche par batiment et un suivi de la qualite des donnees.
+
+Hebergement gratuit : l'application se met en veille sans visite et peut mettre environ une minute a se reveiller. Code, regles d'alerte et lancement en local (Docker ou Python) : [`app/README.md`](app/README.md).
+
 ## Analyse metier
 
 Le jeu nettoye couvre **3 806 batiments distincts** et 33 239 declarations annuelles (2015-2024). Les chiffres ci-dessous portent sur l'annee la plus recente (2024, 3 609 batiments).
@@ -73,7 +83,9 @@ energy-performance-dashboard/
 |   |-- 03_data_analysis.ipynb
 |   |-- 04_export_tableau.ipynb
 |-- src/
+|   |-- cleaning.py     # Mise en forme des noms de batiments
 |   |-- indicators.py   # Indicateurs partages (dont priority_score)
+|-- app/            # Application Energy Watch (Streamlit + Docker)
 |-- sql/
 |   |-- create_tables.sql
 |   |-- analysis_queries.sql
@@ -85,6 +97,7 @@ energy-performance-dashboard/
 |-- images/
 |   |-- dashboard_overview.png
 |-- README.md
+|-- render.yaml     # Deploiement d'Energy Watch sur Render
 |-- requirements.txt
 ```
 
@@ -95,6 +108,9 @@ energy-performance-dashboard/
 - Jupyter Notebook ;
 - SQL ;
 - Tableau Public ;
+- Streamlit ;
+- Docker ;
+- Render ;
 - GitHub.
 
 ## Comment utiliser le projet
