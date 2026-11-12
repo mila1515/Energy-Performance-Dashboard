@@ -16,9 +16,14 @@ Le nettoyage vise a preparer des variables fiables pour l'analyse :
 
 - standardisation des noms de colonnes ;
 - selection des variables utiles pour l'analyse metier ;
-- traitement des scores ENERGY STAR manquants ;
-- traitement des valeurs manquantes de gaz naturel ;
+- conservation des libelles d'origine pour les types de batiment (`Multifamily LR (1-4)`, `SPS-District K-12`...) ;
+- suppression des lignes incompletes ou incoherentes (surface, consommation ou nombre d'etages nuls, annee de construction posterieure a l'annee de declaration) ;
+- suppression des valeurs aberrantes : `site_eui` hors de l'intervalle [1 ; 1000] kBtu/sf (29 lignes, erreurs de declaration probables) ;
+- scores ENERGY STAR manquants laisses vides (pas d'imputation par la mediane, qui aurait gonfle la categorie `Bon`) ;
+- gaz naturel manquant remplace par 0 (batiment sans gaz) ;
 - preparation d'un fichier nettoye pour l'analyse.
+
+Chaque ligne correspond a un batiment pour une annee de declaration (3 806 batiments distincts, 33 239 declarations). Les comptes de batiments utilisent donc un compte distinct de `building_id`.
 
 Emplacement des donnees nettoyees :
 
@@ -34,7 +39,9 @@ Des indicateurs complementaires ont ete crees pour faciliter l'analyse dans le t
 - `energy_star_category`;
 - `priority_score`.
 
-Le `priority_score` combine la consommation d'energie, les emissions de CO2 et la performance ENERGY STAR. Un score proche de 1 indique qu'un batiment doit etre analyse en priorite.
+Ces indicateurs sont calcules dans `src/indicators.py`, utilise a la fois par l'analyse (notebook 03) et l'export Tableau (notebook 04).
+
+Le `priority_score` combine l'intensite energetique (40 %), les emissions de CO2 (40 %) et un score ENERGY STAR faible (20 %). Les rangs sont calcules a l'interieur de chaque annee, ce qui permet de classer les batiments d'une meme annee sans doublons. Un score proche de 1 indique qu'un batiment doit etre analyse en priorite.
 
 ## 4. Analyse exploratoire
 
