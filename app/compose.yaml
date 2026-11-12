@@ -1,0 +1,13 @@
+# Lancer depuis app/ :  docker compose up --build -d
+# Puis ouvrir http://localhost:8530
+# Autre port : ENERGY_WATCH_PORT=8600 docker compose up -d (ou dans un fichier app/.env)
+services:
+  energy-watch:
+    build:
+      context: ..
+      dockerfile: app/Dockerfile
+    image: energy-watch:latest
+    container_name: energy-watch
+    ports:
+      - "${ENERGY_WATCH_PORT:-8530}:8501"   # port de l'ordinateur : port du conteneur
+    restart: unless-stopped

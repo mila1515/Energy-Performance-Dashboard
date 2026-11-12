@@ -1,0 +1,13 @@
+# Fichiers exclus du contexte de build (lu par BuildKit pour app/Dockerfile).
+# On n'envoie que ce dont l'image a besoin : app/ et le CSV du tableau de bord.
+*
+!app/
+!dashboard/building_energy_performance_dashboard.csv
+
+# Dans app/, on exclut les fichiers locaux
+**/__pycache__
+**/*.py[cod]
+app/.streamlit/secrets.toml
+app/Dockerfile*
+app/compose.yaml
+app/README.md
