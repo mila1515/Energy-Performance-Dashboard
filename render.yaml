@@ -1,0 +1,17 @@
+# Blueprint Render : deploiement de l'appli Energy Watch (dossier app/).
+# Sur Render : New + -> Blueprint -> choisir ce depot.
+services:
+  - type: web
+    name: energy-watch
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    dockerfilePath: ./app/Dockerfile
+    dockerContext: .
+    healthCheckPath: /_stcore/health
+    # Redeploie seulement quand l'appli ou les donnees du tableau de bord changent
+    buildFilter:
+      paths:
+        - app/**
+        - dashboard/**
